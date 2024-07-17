@@ -13,6 +13,10 @@ java {
 	}
 }
 
+bootJar {
+	archiveFileName = 'message-producer.jar'
+}
+
 repositories {
 	mavenCentral()
 }
