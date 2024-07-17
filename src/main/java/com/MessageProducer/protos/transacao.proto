@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message Cartao{
+  string numero_cartao = 1;
+  string nome_cartao = 2;
+  string bandeira = 3;
+  google.protobuf.Timestamp vencimento = 4;
+}
+
+message Transacao{
+  int64 id_transacao = 1;
+  float valor = 2;
+  string documento_cliente = 3;
+  string documento_servidor = 4;
+  string cidade_compra = 5;
+  google.protobuf.Timestamp data_operacao = 6;
+
+
+  enum TipoEstabelecimento{
+    NULL = 0;
+    SAUDE = 1;
+    RURAL = 2;
+    ALIMENTACAO = 3;
+    METALURGIA = 4;
+    TECNOLOGIA = 5;
+    ENERGIA = 6;
+    AUTOMOBILISTICO = 7;
+
+
+  }
+
+  enum TipoTransacao{
+    NULO = 0;
+    CREDITO = 1;
+    DEBITO = 2;
+    VOUCHER = 3;
+  }
+
+  TipoEstabelecimento tipo_estabelecimento = 7;
+  TipoTransacao tipo_transacao = 8;
+  Cartao cartao = 9;
+}

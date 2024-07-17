@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message MessageWrapper {
+  string type = 1;
+  bytes data = 2;
+  uint64 timestamp = 3;
+  string id = 4;
+  bool isWarmingUp = 5;
+}

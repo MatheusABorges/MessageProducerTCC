@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+message Radar{
+  int64 id_radar = 1;
+  string localizacao = 2;
+  int32 limite_velocidade = 3;
+
+
+  enum EstadoRadar{
+    NULO = 0;
+    INATIVO = 1;
+    ATIVO = 2;
+  }
+  EstadoRadar estado_radar = 4;
+
+  string modelo_radar = 5;
+}
+message Veiculo{
+
+  enum TipoVeiculo{
+    NAO_ESPECIFICADO = 0;
+    CARRO = 1;
+    CAMINHONETE = 2;
+    ONIBUS = 3;
+    CAMINHAO = 4;
+    TRATOR = 5;
+    MOTO = 6;
+  }
+  TipoVeiculo tipo_veiculo = 1;
+  int32 velocidade_registrada = 2;
+  string placa = 3;
+}
+
+message Deteccao{
+  int64 id_deteccao = 1;
+  uint64 data_deteccao = 2;
+  Veiculo veiculo = 3;
+  Radar radar = 4;
+}

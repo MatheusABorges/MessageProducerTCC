@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+
+message Localizacao {
+    double latitude = 1;
+    double longitude = 2;
+    double altitude = 3;
+}
+
+message Color {
+  float red = 1;
+  float green = 2;
+  float blue = 3;
+  float alpha = 4;
+}
+
+message Jogador {
+  int64 id = 1;
+  string regiao_do_servidor = 2;
+  float velocidade = 4;
+  int32 posicao = 5;
+  google.protobuf.Duration tempo_de_corrida = 6;
+
+  enum PistaDaCorrida {
+    NAO_ESPECIFICADO = 0;
+    INTERLAGOS = 1;
+    MONACO = 2;
+    INDIANAPOLIS = 3;
+    LAS_VEGAS = 4;
+    RIVERSIDE = 5;
+  }
+
+  message Carro {
+    enum ModeloCarro {
+      NAO_ESPECIFICADO = 0;
+      FUSCA = 1;
+      BRASILIA = 2;
+      PARATI = 3;
+      OPALA = 4;
+      CHEVETTE = 5;
+      VARIANT = 6;
+    }
+    ModeloCarro modelo_do_carro = 1;
+    float estado_do_carro = 2;
+    Color cor = 3;
+  }
+  
+  PistaDaCorrida pista_de_corrida = 7;
+  Localizacao localizacao = 8;
+  Carro carro = 9;
+}
