@@ -21,6 +21,8 @@ public class MessageSendingController {
 
     private ScheduledExecutorService scheduler;
 
+    private long messagesSent=0;
+
     @PostMapping("/send")
     public String sendMessage(@RequestBody SimulationParamsDTO request) {
         InetAddress hostAddress;
@@ -43,6 +45,7 @@ public class MessageSendingController {
 
             while (System.currentTimeMillis() < endTime) {
                 producerService.sendMessage(hostAddress, request.getPort(), false);
+                messagesSent++;
             }
         }
         else{//sends messages at a given rate
@@ -51,6 +54,7 @@ public class MessageSendingController {
                     producerService.sendMessage(hostAddress, request.getPort(), true);
                 }else if( System.currentTimeMillis() < endTime){
                     producerService.sendMessage(hostAddress, request.getPort(), false);
+                    messagesSent++;
                 }
                 else {
                     scheduler.shutdown();
@@ -58,6 +62,6 @@ public class MessageSendingController {
             }, 0, 1000000000L/(long)(request.getMessageRate()), TimeUnit.NANOSECONDS);
         }
 
-        return "Messages sent";
+        return "Messages sent: " + messagesSent;
     }
 }
