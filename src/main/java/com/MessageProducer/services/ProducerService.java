@@ -13,6 +13,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.sql.Timestamp;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,7 @@ public class ProducerService {
 
     public void generateMessages(int numberOfMessages, int length) {
         Random random = new Random();
+        Instant inicio_construcao_msg = Instant.now();
         for (int i = 0; i < numberOfMessages; i++) {
             DeteccaoOuterClass.Radar radar = DeteccaoOuterClass.Radar.newBuilder()
                     .setIdRadar(random.nextLong())
@@ -75,6 +78,8 @@ public class ProducerService {
 
             messages.add(message);
         }
+            Duration duration = Duration.between(Instant.now(), inicio_construcao_msg);
+            System.out.println("Duração da tarefa em segundos: " + duration.getSeconds());
     }
 
     //@Scheduled(fixedRateString = "${producer.rate}")

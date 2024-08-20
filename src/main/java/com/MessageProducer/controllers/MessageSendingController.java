@@ -62,6 +62,13 @@ public class MessageSendingController {
             }, 0, 1000000000L/(long)(request.getMessageRate()), TimeUnit.NANOSECONDS);
         }
 
-        return "Messages sent: " + messagesSent;
+        return "Messages sent";
+    }
+
+    @GetMapping("/total_send")
+    public long GetTotalMessagesSent(){
+        long total_messages_sent = messagesSent;
+        messagesSent = 0;
+        return total_messages_sent;
     }
 }
