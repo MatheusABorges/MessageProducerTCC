@@ -54,12 +54,12 @@ public class ProducerService {
                     .setLocalizacao(RandomStringGenerator.generateRandomString(length))
                     .setLimiteVelocidade(random.nextInt() & Integer.MAX_VALUE)
                     .setEstadoRadar(MessageCreationUtils.getEstadoRadarFromInt(random.nextInt(0,3)))
-                    .setModeloRadar(RandomStringGenerator.generateRandomString(length))
+                    .setModeloRadar(RandomStringGenerator.generateRandomPredefinedString(i%5))
                     .build();
 
             DeteccaoOuterClass.Veiculo veiculo = DeteccaoOuterClass.Veiculo.newBuilder()
                     .setTipoVeiculo(DeteccaoOuterClass.Veiculo.TipoVeiculo.CARRO)
-                    .setVelocidadeRegistrada(85)
+                    .setVelocidadeRegistrada(80 + i%10)
                     .setPlaca(RandomStringGenerator.generateRandomString(length))
                     .build();
 

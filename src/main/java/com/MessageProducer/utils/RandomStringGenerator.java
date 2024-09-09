@@ -17,4 +17,9 @@ public class RandomStringGenerator {
         return builder.toString();
     }
 
+    public static String generateRandomPredefinedString(int position) {
+        String[] possibleStrings = new String[]{"Apple", "Banana", "Cherry", "Date", "Elderberry"};
+        return possibleStrings[position];
+    }
+
 }
